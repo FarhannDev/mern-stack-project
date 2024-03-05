@@ -14,8 +14,6 @@ const errorHandler = require('./middleware/errorHandler');
 const corsOptions = require('./config/corsOptions');
 const connectDB = require('./config/database');
 
-// console.log(process.env.NODE_ENV);
-
 connectDB();
 
 // use express middleware
@@ -29,6 +27,8 @@ app.use('/', express.static(path.join(__dirname, 'public')));
 
 // Use Routing
 app.use('/', require('./routes/root'));
+app.use('/api/users', require('./routes/userRoute'));
+app.use('/api/notes', require('./routes/noteRoute'));
 
 // Handle Routing 404 (Not Found)
 app.all('*', (req, res) => {
